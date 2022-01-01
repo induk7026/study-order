@@ -2,8 +2,8 @@ package com.example.studyorder.domain;
 
 public interface PartnerService {
 
-    partnerInfo registerPartner(PartnerCommand command);
-    partnerInfo getPartnerInfo(String partnerToken);
-    partnerInfo enablePartner(String partnerToken);
-    partnerInfo disablePartner(String partnerToken);
+    PartnerInfo registerPartner(PartnerCommand command);
+    PartnerInfo getPartnerInfo(String partnerToken);
+    PartnerInfo enablePartner(String partnerToken);
+    PartnerInfo disablePartner(String partnerToken);
 }

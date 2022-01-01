@@ -1,5 +1,6 @@
 package com.example.studyorder.domain;
 
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,25 +14,32 @@ public class PartnerServiceImpl implements PartnerService{
     private final PartnerReader partnerReader;
 
     @Override
-    public partnerInfo registerPartner(PartnerCommand command) {
-
+    @Transactional
+    public PartnerInfo registerPartner(PartnerCommand command) {
         var initPartner = command.toEntity();
-
-        return null;
+        var partner = partnerStore.store(initPartner);
+        return new PartnerInfo(partner);
     }
 
     @Override
-    public partnerInfo getPartnerInfo(String partnerToken) {
-        return null;
+    public PartnerInfo getPartnerInfo(String partnerToken) {
+        Partner partner = partnerReader.getPartner(partnerToken);
+        return new PartnerInfo(partner);
     }
 
     @Override
-    public partnerInfo enablePartner(String partnerToken) {
-        return null;
+    @Transactional
+    public PartnerInfo enablePartner(String partnerToken) {
+        Partner partner = partnerReader.getPartner(partnerToken);
+        partner.enable();
+        return new PartnerInfo(partner);
     }
 
     @Override
-    public partnerInfo disablePartner(String partnerToken) {
-        return null;
+    @Transactional
+    public PartnerInfo disablePartner(String partnerToken) {
+        Partner partner = partnerReader.getPartner(partnerToken);
+        partner.disable();
+        return new PartnerInfo(partner);
     }
 }
