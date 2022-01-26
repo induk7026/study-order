@@ -1,8 +1,9 @@
-package com.example.studyorder.domain;
+package com.example.studyorder.domain.partner;
 
 
 
 import com.example.studyorder.common.util.TokenGenerator;
+import com.example.studyorder.domain.AbstractEntity;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

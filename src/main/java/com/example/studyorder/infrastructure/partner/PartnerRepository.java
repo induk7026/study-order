@@ -1,6 +1,6 @@
 package com.example.studyorder.infrastructure.partner;
 
-import com.example.studyorder.domain.Partner;
+import com.example.studyorder.domain.partner.Partner;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

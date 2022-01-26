@@ -1,8 +1,8 @@
 package com.example.studyorder.infrastructure.partner;
 
 import com.example.studyorder.common.exception.EntityNotFoundException;
-import com.example.studyorder.domain.Partner;
-import com.example.studyorder.domain.PartnerReader;
+import com.example.studyorder.domain.partner.Partner;
+import com.example.studyorder.domain.partner.PartnerReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

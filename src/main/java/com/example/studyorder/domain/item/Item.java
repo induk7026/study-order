@@ -1,7 +1,9 @@
 package com.example.studyorder.domain.item;
 
 import com.example.studyorder.common.exception.InvalidParamException;
+import com.example.studyorder.common.util.TokenGenerator;
 import com.example.studyorder.domain.AbstractEntity;
+import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,9 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 @Entity
@@ -22,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name ="items")
 public class Item extends AbstractEntity {
 
+    private static final String ITEM_PREFIX = "item_";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,15 +41,19 @@ public class Item extends AbstractEntity {
     @JoinColumn(name = "itemId")
     private List<ItemOptionGroup> optionGroups;
 
-    public Item(String itemToken, Long partnerId, String itemName, Long itemPrice,
-        Status status, List<ItemOptionGroup> optionGroups) {
-        this.itemToken = itemToken;
+    @Builder
+    public Item(Long partnerId, String itemName, Long itemPrice) {
+        if (partnerId == null) throw new InvalidParamException("Item.partnerId");
+        if (StringUtils.isBlank(itemName)) throw new InvalidParamException("Item.itemName");
+        if (itemPrice == null) throw new InvalidParamException("Item.itemPrice");
+
         this.partnerId = partnerId;
+        this.itemToken = TokenGenerator.randomCharacterWithPrefix(ITEM_PREFIX);
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.status = status;
-        this.optionGroups = optionGroups;
+        this.status = Status.PREPARE;
     }
+
 
     @Getter
     @RequiredArgsConstructor

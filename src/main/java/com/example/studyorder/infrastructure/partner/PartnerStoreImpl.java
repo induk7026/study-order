@@ -1,8 +1,8 @@
 package com.example.studyorder.infrastructure.partner;
 
 import com.example.studyorder.common.exception.InvalidParamException;
-import com.example.studyorder.domain.Partner;
-import com.example.studyorder.domain.PartnerStore;
+import com.example.studyorder.domain.partner.Partner;
+import com.example.studyorder.domain.partner.PartnerStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,6 @@
-package com.example.studyorder.domain;
+package com.example.studyorder.domain.partner;
 
-import com.example.studyorder.domain.Partner.Status;
+import com.example.studyorder.domain.partner.Partner.Status;
 import lombok.Builder;
 import lombok.Getter;
 

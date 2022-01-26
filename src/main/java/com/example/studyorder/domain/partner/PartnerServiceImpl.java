@@ -1,4 +1,4 @@
-package com.example.studyorder.domain;
+package com.example.studyorder.domain.partner;
 
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
