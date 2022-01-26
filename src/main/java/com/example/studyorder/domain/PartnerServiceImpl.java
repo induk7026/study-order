@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PartnerServiceImpl implements PartnerService{
 
+    /*
+     *  추후 데이터 베이스를 변경해야하는 상황에서 변경 가능
+     *  도메인 로직은 유지 가능
+     *  @Resource(name ="partnerJdbcTemplateImpl")
+     *  @Qualifier
+     * */
     private final PartnerStore partnerStore;
     private final PartnerReader partnerReader;
 
