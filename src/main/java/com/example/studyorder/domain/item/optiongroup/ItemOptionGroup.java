@@ -53,4 +53,5 @@ public class ItemOptionGroup extends AbstractEntity {
         this.itemOptionGroupName = itemOptionGroupName;
         this.item = item;
     }
+
 }

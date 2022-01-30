@@ -16,7 +16,7 @@ public class ItemCommand {
     public static class RegisterItemRequest {
         private final String itemName;
         private final Long itemPrice;
-        private final List<ItemOptionGroup> itemOptionGroups;
+        private final List<RegisterItemOptionGroupRequest> itemOptionGroups;
 
         public Item toEntity(Long partnerId){
             return Item.builder()
@@ -33,7 +33,7 @@ public class ItemCommand {
     public static class RegisterItemOptionGroupRequest {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ResisterItemOptionRequest> itemOptionRequestList;
+        private final List<ResisterItemOptionRequest> getItemOptions;
 
         public ItemOptionGroup toEntity(Item item){
             return ItemOptionGroup.builder()
