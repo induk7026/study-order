@@ -4,6 +4,7 @@ import com.example.studyorder.common.exception.InvalidParamException;
 import com.example.studyorder.common.util.TokenGenerator;
 import com.example.studyorder.domain.AbstractEntity;
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
+import com.google.common.collect.Lists;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,7 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Builder;
@@ -38,8 +38,7 @@ public class Item extends AbstractEntity {
     private Status status;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "itemId")
-    private List<ItemOptionGroup> optionGroups;
+    private List<ItemOptionGroup> optionGroups = Lists.newArrayList();
 
     @Builder
     public Item(Long partnerId, String itemName, Long itemPrice) {

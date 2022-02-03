@@ -1,8 +1,7 @@
 package com.example.studyorder.domain.item;
 
-import com.example.studyorder.domain.item.option.ItemOption;
-import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
 import com.example.studyorder.domain.partner.PartnerReader;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +10,8 @@ import org.springframework.stereotype.Service;
 public class ItemServiceImpl implements ItemService {
 
     private final PartnerReader partnerReader;
-    private final ItemReader itemReader;
     private final ItemStore itemStore;
-    private final ItemOptionStore itemOptionStore;
-    private final ItemOptionGroupStore itemOptionGroupStore;
+    private final ItemReader itemReader;
     private final ItemOptionSeriesFactory itemOptionSeriesFactory;
 
     @Override
@@ -24,5 +21,26 @@ public class ItemServiceImpl implements ItemService {
         var item = itemStore.store(initItem);
         itemOptionSeriesFactory.store(command, item);
         return item.getItemToken();
+    }
+
+    @Transactional
+    @Override
+    public void changeOnSale(String itemToken){
+        var item = itemReader.getItemToken(itemToken);
+        item.changeOnSales();
+    }
+
+    @Transactional
+    @Override
+    public void changePrePare(String itemToken) {
+        var item = itemReader.getItemToken(itemToken);
+        item.changePrePare();
+    }
+
+    @Transactional
+    @Override
+    public void changeEndOfSales(String itemToken) {
+        var item = itemReader.getItemToken(itemToken);
+        item.changeEndOfSales();
     }
 }

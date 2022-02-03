@@ -1,5 +1,6 @@
 package com.example.studyorder.domain.item;
 
+import com.example.studyorder.domain.item.Item.Status;
 import com.example.studyorder.domain.item.option.ItemOption;
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
 import java.util.List;
@@ -16,7 +17,8 @@ public class ItemCommand {
     public static class RegisterItemRequest {
         private final String itemName;
         private final Long itemPrice;
-        private final List<RegisterItemOptionGroupRequest> itemOptionGroups;
+        private final Item.Status status;
+        private final List<RegisterItemOptionGroupRequest> itemOptionGroupRequests;
 
         public Item toEntity(Long partnerId){
             return Item.builder()
@@ -24,6 +26,10 @@ public class ItemCommand {
                 .itemName(itemName)
                 .itemPrice(itemPrice)
                 .build();
+        }
+
+        public boolean isPrepare(){
+            return this.status == Status.PREPARE;
         }
     }
 

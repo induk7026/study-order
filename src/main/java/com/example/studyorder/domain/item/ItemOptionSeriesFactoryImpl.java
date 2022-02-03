@@ -17,10 +17,10 @@ public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory{
 
     @Override
     public List<ItemOptionGroup> store(ItemCommand.RegisterItemRequest command, Item item) {
-        var itemOptionGroupRequestList = command.getItemOptionGroups();
-        if (CollectionUtils.isEmpty(itemOptionGroupRequestList)) return Collections.emptyList();
+        var itemOptionGroupRequests = command.getItemOptionGroupRequests();
+        if (CollectionUtils.isEmpty(itemOptionGroupRequests)) return Collections.emptyList();
 
-        return itemOptionGroupRequestList.stream()
+        return itemOptionGroupRequests.stream()
             .map(requestItemOptionGroup -> {
                 // itemOptionGroup store
                 var initItemOptionGroup = requestItemOptionGroup.toEntity(item);
