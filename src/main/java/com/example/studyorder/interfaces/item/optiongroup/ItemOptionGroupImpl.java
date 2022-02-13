@@ -1,6 +1,6 @@
 package com.example.studyorder.interfaces.item.optiongroup;
 
-import com.example.studyorder.domain.item.ItemOptionGroupStore;
+import com.example.studyorder.domain.item.optiongroup.ItemOptionGroupStore;
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

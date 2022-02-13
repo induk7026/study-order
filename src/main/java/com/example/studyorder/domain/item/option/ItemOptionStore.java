@@ -1,4 +1,4 @@
-package com.example.studyorder.domain.item;
+package com.example.studyorder.domain.item.option;
 
 import com.example.studyorder.domain.item.option.ItemOption;
 

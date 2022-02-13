@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,7 @@ public class OrderItemOptionGroup {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItemOptionGroup", cascade = CascadeType.PERSIST)
     private List<OrderItemOption> orderItemOptionList = Lists.newArrayList();
 
+    @Builder
     public OrderItemOptionGroup(OrderItem orderItem, Integer ordering, String itemOptionGroupName) {
         if(orderItem == null) throw new InvalidParamException("OrderItemOptionGroup.orderItem");
         if(ordering == null) throw new InvalidParamException("OrderItemOptionGroup.ordering");

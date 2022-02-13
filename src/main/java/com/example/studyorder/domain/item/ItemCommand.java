@@ -39,7 +39,7 @@ public class ItemCommand {
     public static class RegisterItemOptionGroupRequest {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ResisterItemOptionRequest> getItemOptions;
+        private final List<RegisterItemOptionRequest> itemOptions;
 
         public ItemOptionGroup toEntity(Item item){
             return ItemOptionGroup.builder()
@@ -53,7 +53,7 @@ public class ItemCommand {
     @Getter
     @Builder
     @ToString
-    public static class ResisterItemOptionRequest {
+    public static class RegisterItemOptionRequest {
         private final Integer ordering;
         private final String itemOptionName;
         private final Long itemOptionPrice;

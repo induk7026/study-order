@@ -3,11 +3,13 @@ package com.example.studyorder.domain.order;
 import com.example.studyorder.common.exception.IllegalStatusException;
 import com.example.studyorder.common.exception.InvalidParamException;
 import com.example.studyorder.domain.AbstractEntity;
+import com.example.studyorder.domain.order.fragment.DeliveryFragment;
 import com.example.studyorder.domain.order.item.OrderItem;
 import com.google.common.collect.Lists;
 import java.time.ZonedDateTime;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -40,12 +42,8 @@ public class Order extends AbstractEntity {
     private Long userId;
     private String payMethod;
 
-    private String receiverName;
-    private String receiverPhone;
-    private String receiverZipcode;
-    private String receiverAddress1;
-    private String receiverAddress2;
-    private String etcMessage;
+    @Embedded
+    private DeliveryFragment deliveryFragment;
 
     private ZonedDateTime orderAt;
 
@@ -68,23 +66,13 @@ public class Order extends AbstractEntity {
     }
 
     @Builder
-    public Order(Long userId, String payMethod, String receiverName, String receiverPhone, String receiverZipcode, String receiverAddress1, String receiverAddress2, String etcMessage) {
+    public Order(Long userId, String payMethod, DeliveryFragment deliveryFragment) {
         if(userId == null) throw new InvalidParamException("order.userId");
         if(StringUtils.isEmpty(payMethod)) throw new InvalidParamException("order.payMethod");
-        if(StringUtils.isEmpty(receiverName)) throw new InvalidParamException("order.receiverName");
-        if(StringUtils.isEmpty(receiverPhone)) throw new InvalidParamException("order.receiverPhone");
-        if(StringUtils.isEmpty(receiverZipcode)) throw new InvalidParamException("order.receiverZipcode");
-        if(StringUtils.isEmpty(receiverAddress1)) throw new InvalidParamException("order.receiverAddress1");
-        if(StringUtils.isEmpty(receiverAddress2)) throw new InvalidParamException("order.receiverAddress2");
-        if(StringUtils.isEmpty(etcMessage)) throw new InvalidParamException("order.etcMessage");
+        if(deliveryFragment == null) throw new InvalidParamException("order.deliveryFragment");
         this.userId = userId;
         this.payMethod = payMethod;
-        this.receiverName = receiverName;
-        this.receiverPhone = receiverPhone;
-        this.receiverZipcode = receiverZipcode;
-        this.receiverAddress1 = receiverAddress1;
-        this.receiverAddress2 = receiverAddress2;
-        this.etcMessage = etcMessage;
+        this.deliveryFragment = deliveryFragment;
     }
 
     public void orderComplete(){

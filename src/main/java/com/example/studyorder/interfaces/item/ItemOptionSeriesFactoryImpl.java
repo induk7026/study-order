@@ -1,6 +1,11 @@
-package com.example.studyorder.domain.item;
+package com.example.studyorder.interfaces.item;
 
+import com.example.studyorder.domain.item.Item;
+import com.example.studyorder.domain.item.ItemCommand.RegisterItemRequest;
+import com.example.studyorder.domain.item.ItemOptionSeriesFactory;
+import com.example.studyorder.domain.item.option.ItemOptionStore;
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
+import com.example.studyorder.domain.item.optiongroup.ItemOptionGroupStore;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,13 +15,13 @@ import org.springframework.util.CollectionUtils;
 
 @Component
 @RequiredArgsConstructor
-public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory{
+public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory {
 
     private final ItemOptionGroupStore itemOptionGroupStore;
     private final ItemOptionStore itemOptionStore;
 
     @Override
-    public List<ItemOptionGroup> store(ItemCommand.RegisterItemRequest command, Item item) {
+    public List<ItemOptionGroup> store(RegisterItemRequest command, Item item) {
         var itemOptionGroupRequests = command.getItemOptionGroupRequests();
         if (CollectionUtils.isEmpty(itemOptionGroupRequests)) return Collections.emptyList();
 
@@ -27,7 +32,7 @@ public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory{
                 var itemOptionGroup = itemOptionGroupStore.store(initItemOptionGroup);
 
                 // itemOption store
-                requestItemOptionGroup.getGetItemOptions().forEach(requestItemOption -> {
+                requestItemOptionGroup.getItemOptions().forEach(requestItemOption -> {
                     var initItemOption = requestItemOption.toEntity(itemOptionGroup);
                     itemOptionStore.store(initItemOption);
                 });
