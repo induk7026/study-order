@@ -1,5 +1,6 @@
 package com.example.studyorder.domain.item;
 
+import com.example.studyorder.domain.item.ItemInfo.Main;
 import com.example.studyorder.domain.partner.PartnerReader;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -39,8 +40,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional
     @Override
-    public void changeEndOfSales(String itemToken) {
+    public void changeEndOfSale(String itemToken) {
         var item = itemReader.getItemToken(itemToken);
         item.changeEndOfSales();
+    }
+
+    @Override
+    public Main retrieveItemInfo(String itemToken) {
+        var item = itemReader.getItemToken(itemToken);
+        var itemOptionGroupInfoList = itemReader.getItemOptionSeries(item);
+        return new ItemInfo.Main(item, itemOptionGroupInfoList);
     }
 }

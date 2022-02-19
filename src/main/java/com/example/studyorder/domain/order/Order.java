@@ -2,6 +2,7 @@ package com.example.studyorder.domain.order;
 
 import com.example.studyorder.common.exception.IllegalStatusException;
 import com.example.studyorder.common.exception.InvalidParamException;
+import com.example.studyorder.common.util.TokenGenerator;
 import com.example.studyorder.domain.AbstractEntity;
 import com.example.studyorder.domain.order.fragment.DeliveryFragment;
 import com.example.studyorder.domain.order.item.OrderItem;
@@ -28,12 +29,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
-@Entity
 @Getter
+@Entity
 @ToString
 @NoArgsConstructor
 @Table(name = "orders")
 public class Order extends AbstractEntity {
+
+    private static final String ORDER_PREFIX = "ord_";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
@@ -45,7 +48,7 @@ public class Order extends AbstractEntity {
     @Embedded
     private DeliveryFragment deliveryFragment;
 
-    private ZonedDateTime orderAt;
+    private ZonedDateTime orderedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItem> orderItems = Lists.newArrayList();
@@ -70,9 +73,13 @@ public class Order extends AbstractEntity {
         if(userId == null) throw new InvalidParamException("order.userId");
         if(StringUtils.isEmpty(payMethod)) throw new InvalidParamException("order.payMethod");
         if(deliveryFragment == null) throw new InvalidParamException("order.deliveryFragment");
+
+        this.orderToken = TokenGenerator.randomCharacterWithPrefix(ORDER_PREFIX);
         this.userId = userId;
         this.payMethod = payMethod;
         this.deliveryFragment = deliveryFragment;
+        this.orderedAt = ZonedDateTime.now();
+        this.status = Status.INIT;
     }
 
     public void orderComplete(){

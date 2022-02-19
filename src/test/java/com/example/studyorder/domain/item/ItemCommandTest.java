@@ -1,7 +1,7 @@
 package com.example.studyorder.domain.item;
 
 import com.example.studyorder.domain.item.ItemCommand.RegisterItemRequest;
-import com.example.studyorder.interfaces.item.ItemRepository;
+import com.example.studyorder.infrastructure.item.ItemRepository;
 import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -54,7 +54,7 @@ public class OrderCommand {
         private final String itemToken;
         private final String itemName;
         private final Long itemPrice;
-        private final List<RegisterOrderItemOptionGroup> orderItems;
+        private final List<RegisterOrderItemOptionGroup> orderItemOptionGroups;
 
         public OrderItem toEntity(Order order, Item item) {
             return OrderItem.builder()
@@ -75,7 +75,7 @@ public class OrderCommand {
     public static class RegisterOrderItemOptionGroup {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<RegisterOrderItemOption> orderItemOptionList;
+        private final List<RegisterOrderItemOption> orderItemOptions;
 
         public OrderItemOptionGroup toEntity(OrderItem orderItem) {
             return OrderItemOptionGroup.builder()

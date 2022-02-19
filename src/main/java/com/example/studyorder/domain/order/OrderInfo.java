@@ -1,4 +1,4 @@
-package com.example.studyorder.domain.order.payment;
+package com.example.studyorder.domain.order;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -13,16 +13,16 @@ public class OrderInfo {
     @Builder
     @ToString
     public static class Main {
-        private final long orderId;
+        private final Long orderId;
         private final String orderToken;
         private final Long userId;
         private final String payMethod;
         private final Long totalAmount;
         private final DeliveryInfo deliveryInfo;
-        private final ZonedDateTime orderAt;
+        private final ZonedDateTime orderedAt;
         private final String status;
         private final String statusDescription;
-        private final List<OrderItem> orderItemList;
+        private final List<OrderItem> orderItems;
     }
 
     @Getter
@@ -49,7 +49,7 @@ public class OrderInfo {
         private final Long itemPrice;
         private final String deliveryStatus;
         private final String deliveryStatusDescription;
-        private final List<OrderItemOptionGroup> orderItemOptionGroupList;
+        private final List<OrderItemOptionGroup> orderItemOptionGroups;
     }
 
     @Getter
@@ -58,7 +58,7 @@ public class OrderInfo {
     public static class OrderItemOptionGroup {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<OrderItemOption> orderItemOptionList;
+        private final List<OrderItemOption> orderItemOptions;
     }
 
     @Getter

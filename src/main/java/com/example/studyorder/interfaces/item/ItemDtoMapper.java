@@ -16,11 +16,11 @@ import org.mapstruct.ReportingPolicy;
 public interface ItemDtoMapper {
 
     @Mappings({
-        @Mapping(source = "request.itemOptionGroupList", target = "itemOptionGroupRequests")
+        @Mapping(source = "request.itemOptionGroups", target = "itemOptionGroupRequests")
     })
     ItemCommand.RegisterItemRequest of(ItemDto.RegisterItemRequest request);
 
-    @Mappings({@Mapping(source = "itemOptions", target = "itemOptionRequestList")})
+    @Mappings({@Mapping(source = "itemOptions", target = "itemOptionRequests")})
     ItemCommand.RegisterItemOptionGroupRequest of(ItemDto.RegisterItemOptionGroupRequest request);
 
     ItemCommand.RegisterItemOptionRequest of(ItemDto.RegisterItemOptionRequest request);

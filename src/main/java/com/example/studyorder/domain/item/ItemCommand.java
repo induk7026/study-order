@@ -1,6 +1,5 @@
 package com.example.studyorder.domain.item;
 
-import com.example.studyorder.domain.item.Item.Status;
 import com.example.studyorder.domain.item.option.ItemOption;
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;
 import java.util.List;
@@ -17,19 +16,14 @@ public class ItemCommand {
     public static class RegisterItemRequest {
         private final String itemName;
         private final Long itemPrice;
-        private final Item.Status status;
-        private final List<RegisterItemOptionGroupRequest> itemOptionGroupRequests;
+        private final List<RegisterItemOptionGroupRequest> itemOptionGroupRequests; // ex) 색상, 사이즈
 
-        public Item toEntity(Long partnerId){
+        public Item toEntity(Long partnerId) {
             return Item.builder()
                 .partnerId(partnerId)
                 .itemName(itemName)
                 .itemPrice(itemPrice)
                 .build();
-        }
-
-        public boolean isPrepare(){
-            return this.status == Status.PREPARE;
         }
     }
 
@@ -39,7 +33,7 @@ public class ItemCommand {
     public static class RegisterItemOptionGroupRequest {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<RegisterItemOptionRequest> itemOptions;
+        private final List<RegisterItemOptionRequest> itemOptionRequests;
 
         public ItemOptionGroup toEntity(Item item){
             return ItemOptionGroup.builder()

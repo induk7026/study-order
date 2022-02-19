@@ -1,6 +1,7 @@
 package com.example.studyorder.domain.order.item;
 
 import com.example.studyorder.common.exception.InvalidParamException;
+import com.example.studyorder.domain.AbstractEntity;
 import com.example.studyorder.domain.order.Order;
 import com.google.common.collect.Lists;
 import java.util.List;
@@ -20,15 +21,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
 
 @Entity
 @Getter
-@ToString
 @NoArgsConstructor
 @Table(name = "order_items")
-public class OrderItem {
+public class OrderItem extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,7 +48,7 @@ public class OrderItem {
     private List<OrderItemOptionGroup> orderItemOptionGroups = Lists.newArrayList();
 
     @Enumerated(EnumType.STRING)
-    private DeliveryStatus status;
+    private DeliveryStatus deliveryStatus;
 
     @Getter
     @RequiredArgsConstructor
@@ -77,7 +76,7 @@ public class OrderItem {
         this.itemName = itemName;
         this.itemToken = itemToken;
         this.itemPrice = itemPrice;
-        this.status = DeliveryStatus.BEFORE_DELIVERY;
+        this.deliveryStatus = DeliveryStatus.BEFORE_DELIVERY;
     }
 
     public Long calculateOrderPrice(){

@@ -1,4 +1,4 @@
-package com.example.studyorder.interfaces.item.option;
+package com.example.studyorder.infrastructure.item.option;
 
 import com.example.studyorder.domain.item.option.ItemOption;
 import org.springframework.data.jpa.repository.JpaRepository;

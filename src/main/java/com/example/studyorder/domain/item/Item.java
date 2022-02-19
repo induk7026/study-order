@@ -38,7 +38,7 @@ public class Item extends AbstractEntity {
     private Status status;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.PERSIST)
-    private List<ItemOptionGroup> optionGroups = Lists.newArrayList();
+    private List<ItemOptionGroup> itemOptionGroups = Lists.newArrayList();
 
     @Builder
     public Item(Long partnerId, String itemName, Long itemPrice) {

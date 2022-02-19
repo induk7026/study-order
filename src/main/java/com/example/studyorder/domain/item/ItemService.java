@@ -6,5 +6,6 @@ public interface ItemService {
 
     void changeOnSale(String itemToken);
     void changePrePare(String itemToken);
-    void changeEndOfSales(String itemToken);
+    void changeEndOfSale(String itemToken);
+    ItemInfo.Main retrieveItemInfo(String itemToken);
 }

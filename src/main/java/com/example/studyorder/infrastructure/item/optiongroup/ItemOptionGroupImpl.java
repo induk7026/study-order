@@ -1,4 +1,4 @@
-package com.example.studyorder.interfaces.item.optiongroup;
+package com.example.studyorder.infrastructure.item.optiongroup;
 
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroupStore;
 import com.example.studyorder.domain.item.optiongroup.ItemOptionGroup;

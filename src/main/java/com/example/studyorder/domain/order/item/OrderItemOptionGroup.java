@@ -1,6 +1,7 @@
 package com.example.studyorder.domain.order.item;
 
 import com.example.studyorder.common.exception.InvalidParamException;
+import com.example.studyorder.domain.AbstractEntity;
 import com.google.common.collect.Lists;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 @Entity
 @NoArgsConstructor
 @Table(name = "order_item_option_groups")
-public class OrderItemOptionGroup {
+public class OrderItemOptionGroup extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +38,7 @@ public class OrderItemOptionGroup {
     private String itemOptionGroupName;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderItemOptionGroup", cascade = CascadeType.PERSIST)
-    private List<OrderItemOption> orderItemOptionList = Lists.newArrayList();
+    private List<OrderItemOption> orderItemOptions = Lists.newArrayList();
 
     @Builder
     public OrderItemOptionGroup(OrderItem orderItem, Integer ordering, String itemOptionGroupName) {
@@ -50,7 +51,7 @@ public class OrderItemOptionGroup {
     }
 
     public Long calculateTotalAmount() {
-        return orderItemOptionList.stream()
+        return orderItemOptions.stream()
             .mapToLong(OrderItemOption::getItemOptionPrice)
             .sum();
     }

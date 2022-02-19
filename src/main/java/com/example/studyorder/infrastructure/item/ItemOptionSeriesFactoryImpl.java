@@ -1,4 +1,4 @@
-package com.example.studyorder.interfaces.item;
+package com.example.studyorder.infrastructure.item;
 
 import com.example.studyorder.domain.item.Item;
 import com.example.studyorder.domain.item.ItemCommand.RegisterItemRequest;
@@ -32,7 +32,7 @@ public class ItemOptionSeriesFactoryImpl implements ItemOptionSeriesFactory {
                 var itemOptionGroup = itemOptionGroupStore.store(initItemOptionGroup);
 
                 // itemOption store
-                requestItemOptionGroup.getItemOptions().forEach(requestItemOption -> {
+                requestItemOptionGroup.getItemOptionRequests().forEach(requestItemOption -> {
                     var initItemOption = requestItemOption.toEntity(itemOptionGroup);
                     itemOptionStore.store(initItemOption);
                 });

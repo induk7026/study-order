@@ -18,10 +18,10 @@ public class ItemInfo {
         private final String itemName;
         private final Long itemPrice;
         private final Item.Status status;
-        private final List<ItemOptionGroup> itemOptionGroups;
+        private final List<ItemOptionGroupInfo> itemOptionGroups;
 
         @Builder
-        public Main(Item item, List<ItemOptionGroup> itemOptionGroups) {
+        public Main(Item item, List<ItemOptionGroupInfo> itemOptionGroups) {
             this.itemToken = item.getItemToken();
             this.partnerId = item.getPartnerId();
             this.itemName = item.getItemName();
@@ -36,10 +36,10 @@ public class ItemInfo {
     public static class ItemOptionGroupInfo {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ItemOption> itemOptions;
+        private final List<ItemOptionInfo> itemOptions;
 
         @Builder
-        public ItemOptionGroupInfo(ItemOptionGroup itemOptionGroup, List<ItemOption> itemOptions) {
+        public ItemOptionGroupInfo(ItemOptionGroup itemOptionGroup, List<ItemOptionInfo> itemOptions) {
             this.ordering = itemOptionGroup.getOrdering();
             this.itemOptionGroupName = itemOptionGroup.getItemOptionGroupName();
             this.itemOptions = itemOptions;

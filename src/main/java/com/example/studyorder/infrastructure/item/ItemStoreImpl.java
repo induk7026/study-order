@@ -1,4 +1,4 @@
-package com.example.studyorder.interfaces.item;
+package com.example.studyorder.infrastructure.item;
 
 import com.example.studyorder.domain.item.Item;
 import com.example.studyorder.domain.item.ItemStore;

@@ -1,6 +1,7 @@
 package com.example.studyorder.domain.order.item;
 
 import com.example.studyorder.common.exception.InvalidParamException;
+import com.example.studyorder.domain.AbstractEntity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 @NoArgsConstructor
 @Table(name = "order_item_options")
-public class OrderItemOption {
+public class OrderItemOption extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

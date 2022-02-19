@@ -16,7 +16,7 @@ public class ItemDto {
         private String partnerToken;
         private String itemName;
         private Long itemPrice;
-        private List<RegisterItemOptionGroupRequest> itemOptionGroupList;
+        private List<RegisterItemOptionGroupRequest> itemOptionGroups;
     }
 
     @Getter
@@ -25,7 +25,7 @@ public class ItemDto {
     public static class RegisterItemOptionGroupRequest {
         private Integer ordering;
         private String itemOptionGroupName;
-        private List<RegisterItemOptionRequest> itemOptionList;
+        private List<RegisterItemOptionRequest> itemOptions;
     }
 
     @Getter
@@ -60,7 +60,7 @@ public class ItemDto {
         private final String itemName;
         private final Long itemPrice;
         private final Item.Status status;
-        private final List<ItemOptionGroupInfo> itemOptionGroupList;
+        private final List<ItemOptionGroupInfo> itemOptionGroups;
     }
 
     @Getter
@@ -69,7 +69,7 @@ public class ItemDto {
     public static class ItemOptionGroupInfo {
         private final Integer ordering;
         private final String itemOptionGroupName;
-        private final List<ItemOptionInfo> itemOptionList;
+        private final List<ItemOptionInfo> itemOptions;
     }
 
     @Getter

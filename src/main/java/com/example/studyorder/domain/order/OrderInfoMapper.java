@@ -1,9 +1,8 @@
 package com.example.studyorder.domain.order;
 
+import com.example.studyorder.domain.order.item.OrderItem;
 import com.example.studyorder.domain.order.item.OrderItemOption;
 import com.example.studyorder.domain.order.item.OrderItemOptionGroup;
-import com.example.studyorder.domain.order.payment.OrderInfo;
-import com.example.studyorder.domain.order.payment.OrderInfo.OrderItem;
 import java.util.List;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -18,10 +17,10 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface OrderInfoMapper {
 
-    @Mappings ({
-        @Mapping(source="Order.id", target="orderId"),
-        @Mapping(source="Order.deliveryFragment", target = "deliveryInfo"),
-        @Mapping(expression="java(order.calculateTotalAmount())", target = "totalAmount"),
+    @Mappings({
+        @Mapping(source = "order.id", target = "orderId"),
+        @Mapping(source = "order.deliveryFragment", target = "deliveryInfo"),
+        @Mapping(expression = "java(order.calculateTotalAmount())", target = "totalAmount"),
         @Mapping(expression = "java(order.getStatus().name())", target = "status"),
         @Mapping(expression = "java(order.getStatus().getDescription())", target = "statusDescription")
     })
