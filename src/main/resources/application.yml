@@ -1,0 +1,29 @@
+server:
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  jpa:
+    show-sql: true
+    #    database-platform: mysql
+    hibernate:
+      ddl-auto: none
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3310/order?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+      username: order-svc
+      password: order-pass
+  flyway:
+    user: order-svc
+    password: order-pass
+    schemas: order
+    jdbc-url: jdbc:mysql://localhost:3310/order?serverTimezone=UTC&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+    enabled: true
+
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+
